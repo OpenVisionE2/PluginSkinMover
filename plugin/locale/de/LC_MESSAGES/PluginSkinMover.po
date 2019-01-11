@@ -1,0 +1,50 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: PluginSkinMover\n"
+"POT-Creation-Date: 2014-06-01 10:23+0100\n"
+"PO-Revision-Date: 2019-01-11 14:13+0330\n"
+"Last-Translator: schomi <schomi@vuplus-support.org>\n"
+"Language-Team: schomi <schomi@vuplus-support.org>\n"
+"Language: de\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.2\n"
+"X-Poedit-KeywordsList: _;gettext;gettext_noop\n"
+"X-Poedit-Basepath: .\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+msgid "Availiable Flash: %s <=> Device: %s"
+msgstr "Verfügbarer Flash: %s <=> Gerät: %s"
+
+msgid "Exit"
+msgstr "Beenden"
+
+msgid "Exported"
+msgstr "Exportiert"
+
+msgid "Move plugins between flash memory and pen drive"
+msgstr "Verschiebe Plugins zwischen Flash Speicher und Speichersticks"
+
+msgid "Move your Plugins"
+msgstr "Verschiebe deine Plugins"
+
+msgid "Moving, please wait ..."
+msgstr "Verschiebe, bitte warten ..."
+
+msgid "No device to %s mounted. Plugin movement is not possible!"
+msgstr ""
+"Kein Speicher nach %s eingehängt. Plugin verschieben ist nicht möglich!"
+
+msgid "Plugin movement was not successful, please check devices!"
+msgstr ""
+"Verschieben des Plugins war nicht erfolgreich, bitte Speichergeräte prüfen!"
+
+msgid "PluginSkinMover"
+msgstr "PluginSkinMover"
+
+msgid "in Flash"
+msgstr "im Flash"
+
+msgid "read ..."
+msgstr "lese ..."
