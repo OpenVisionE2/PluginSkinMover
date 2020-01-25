@@ -29,7 +29,7 @@ for p in harddiskmanager.getMountedPartitions(True):
 
 ###########################################################################
 
-PLUGIN_PATH = '/usr/lib/enigma2/python/Plugins/Extensions/PluginSkinMover'
+PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, 'Extensions/PluginSkinMover')
 mounted_string="Nothing mounted at "
 
 
@@ -47,8 +47,8 @@ class storagedevicescreen(Screen, HelpableScreen):
 	  
         	
 
-		<ePixmap position="210,635" size="25,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PluginSkinMover/pic/button_red.png" transparent="1" alphatest="on"/>
-		<ePixmap position="495,635" size="260,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
+		<ePixmap position="210,635" size="25,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_red.png" transparent="1" alphatest="on"/>
+		<ePixmap position="495,635" size="260,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
 		
 
 		
@@ -57,7 +57,7 @@ class storagedevicescreen(Screen, HelpableScreen):
 		   
            
            
-           </screen>'''
+           </screen>''' % resolveFilename(SCOPE_PLUGINS)
 
 
     def __init__(self, session, text = "", filename = "", currDir = None, location = None, userMode = False, windowTitle = _("Choose backup location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
