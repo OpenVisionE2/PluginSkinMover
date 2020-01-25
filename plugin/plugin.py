@@ -94,10 +94,10 @@ class PluginSkinMoverScreen(Screen):
 			</convert>
 		</widget>
 		<widget name="Picture" position="780,240" size="100,40" alphatest="on" />
-		<ePixmap position="10,455" size="25,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PluginSkinMover/pic/button_red.png" transparent="1" alphatest="on"/>
-		<ePixmap position="215,455" size="185,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
-		<ePixmap position="500,455" size="185,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PluginSkinMover/pic/button_yellow.png" transparent="1" alphatest="on"/>
-		<ePixmap position="785,455" size="185,25" zPosition="0" pixmap="/usr/lib/enigma2/python/Plugins/Extensions/PluginSkinMover/pic/button_blue.png" transparent="1" alphatest="on"/>
+		<ePixmap position="10,455" size="25,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_red.png" transparent="1" alphatest="on"/>
+		<ePixmap position="215,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
+		<ePixmap position="500,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_yellow.png" transparent="1" alphatest="on"/>
+		<ePixmap position="785,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_blue.png" transparent="1" alphatest="on"/>
 		
                 <widget source="key_red" render="Label" position="40,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_green" render="Label" position="245,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
@@ -105,7 +105,7 @@ class PluginSkinMoverScreen(Screen):
 		<widget source="key_blue" render="Label" position="815,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 	
         
-        </screen>"""
+        </screen>""" % resolveFilename(SCOPE_PLUGINS)
 	
 	def __init__(self, session):
 		Screen.__init__(self, session)
@@ -135,13 +135,13 @@ class PluginSkinMoverScreen(Screen):
 			"yellow": self.showsettings,
 		}, -2)
 		
-		self.plugin_base_dir = "/usr/lib/enigma2/python/Plugins/Extensions"
+		self.plugin_base_dir = resolveFilename(SCOPE_PLUGINS, "Extensions")
 		try:targetlocation=config.PluginSkinMover.targetdevice.value
 		except:targetlocation="/media/usb"
 		self.mount_dir = targetlocation
 		self.ext_dir = targetlocation+"/Extensions"
-		self.enabled_pic = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/PluginSkinMover/pic/loc_flash.png")
-		self.disabled_pic = LoadPixmap(cached=True, path="/usr/lib/enigma2/python/Plugins/Extensions/PluginSkinMover/pic/loc_media.png")
+		self.enabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
+		self.disabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
 		
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
