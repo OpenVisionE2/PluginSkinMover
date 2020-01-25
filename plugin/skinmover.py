@@ -46,10 +46,8 @@ pversion = "0.6" ## extended by mfaraj57
 pdate = "201406013"
 
 # PluginSkinMover
-
 def foldersize(size):
-         try:  
-            
+         try:
             fspace=round(float((size) / (1024.0*1024.0)),2)        
 	    #tspace=round(float((capacity) / (1024.0 * 1024.0)),1)
             spacestr=str(fspace)+'MB'
@@ -68,11 +66,9 @@ def freespace(folder='/'):
          except:
             return "location is unavaiable or not mounted"
 
-
-
 class SkinMoverScreen(Screen):
 	skin = """
-		<screen position="center,center" size="1000,520" title="">
+	     <screen position="center,center" size="1000,520" title="">
 		<widget name="info" position="10,10" size="810,60" font="Regular;24" foregroundColor="#00fff000"/>
 		<widget source="menu" render="Listbox" position="10,80" size="630,360" zPosition="5" scrollbarMode="showOnDemand" transparent="1">
 			<convert type="TemplatedMultiContent">
@@ -92,25 +88,20 @@ class SkinMoverScreen(Screen):
 		<ePixmap position="215,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
 		<ePixmap position="500,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_yellow.png" transparent="1" alphatest="on"/>
 		<ePixmap position="785,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_blue.png" transparent="1" alphatest="on"/>
-		
                 <widget source="key_red" render="Label" position="40,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_green" render="Label" position="245,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_yellow" render="Label" position="530,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_blue" render="Label" position="815,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-	
-        
-        </screen>""" % resolveFilename(SCOPE_PLUGINS)
+            </screen>""" % ((resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS))
 	
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.session = session
-		
 		self.title = pname + " (" + pversion + ")"
 		try:
 			self["title"]=StaticText(self.title)
 		except:
-			print 'self["title"] was not found in skin'
-			
+			print 'self["title"] was not found in skin'	
 		self["info"] = Label("Please wait..")				
 		self["Picture"] = Pixmap()
 		self["key_red"] = StaticText(_("Exit"))
@@ -148,7 +139,8 @@ class SkinMoverScreen(Screen):
                 self["info"].setText("Moving skin,please wait...")
 		self.timer = eTimer()
                 self.timer.callback.append(self.runMenuEntry)
-                self.timer.start(50, 1) 	
+                self.timer.start(50, 1)
+
         def pluginskinmover(self):
             from plugin import PluginSkinMoverScreen
             self.session.open(PluginSkinMoverScreen)
@@ -160,7 +152,6 @@ class SkinMoverScreen(Screen):
         def selectionChanged(self,result=None):
                 if result==True:
                    self.createMenuList()
-                   
 		try:sel = self["menu"].getCurrent()
 		except:return
 		try:
@@ -171,9 +162,9 @@ class SkinMoverScreen(Screen):
 			self["key_green"].setText(_("Exported"))
 		except:
                   pass	
-			
 		self.getdevices_sizes()	
 		# Flash size
+
         def getdevices_sizes(self):
 		freeflash='Unable to read flash size'
 		try:
@@ -181,34 +172,21 @@ class SkinMoverScreen(Screen):
                    freeflash = freespace("/")#bytes2human(freeflash, 1)
 		except:
                    pass
-		
-		
-
 		# Device size
 		freedev="The device is unavailable or not mounted"
 		try:
 			#stat = statvfs(self.mount_dir)
-			
 			devicelocation=config.PluginSkinMover.targetdevice.value
 			self.mount_dir=devicelocation
 			freedev =devicelocation+" "+ freespace(devicelocation)
-			
 		except:
-			
 			try:devicelocation=config.PluginSkinMover.targetdevice.value
 			except:devicelocation='unknown'
-			freedev =devicelocation+" "+ freedev                       
-                        
+			freedev =devicelocation+" "+ freedev
                         pass
 		#freedev = (stat.f_bavail or stat.f_bfree) * stat.f_bsize
-		
-
 		self["info"].setText(_("Flash: %s \n Device: %s") % (freeflash, freedev))
-		        
-        
-        
-        
-        
+
 	def createMenuList(self):
 		self["info"].setText(_("read ..."))
 		chdir(self.plugin_base_dir)
@@ -236,7 +214,6 @@ class SkinMoverScreen(Screen):
 					else:
 						pic = self.enabled_pic
 					f_list.append((f, pic, size))
-			
 		menu_list = [ ]
 		for entry in f_list:
 		        print "166",entry
@@ -253,19 +230,17 @@ class SkinMoverScreen(Screen):
 			self["Picture"].show()
 		else:
 			self["Picture"].hide()
-	
+
 	def keyCancel(self):
 		self.close()
 
 	def runMenuEntry(self):
-	
 		try:
                    devicelocation=config.PluginSkinMover.targetdevice.value
 		   self.mount_dir=devicelocation
 		   print "242",self.mount_dir
                 except:
-                   pass   	
-	
+                   pass
 		if os_path.ismount(self.mount_dir):
 			self["info"].setText(_("Moving, please wait ..."))
 			sel = self["menu"].getCurrent()
@@ -308,7 +283,6 @@ class SkinMoverScreen(Screen):
 			if error:
 				self.session.open(MessageBox, _("Skin movement was not successful, please check devices!"), type = MessageBox.TYPE_ERROR, timeout = 10)
 				error = False
-				
 			self.createMenuList()
 		else:
 			self.session.open(MessageBox, _("No device to %s mounted. Skin movement is not possible!") % self.mount_dir, type = MessageBox.TYPE_ERROR, timeout = 10)
