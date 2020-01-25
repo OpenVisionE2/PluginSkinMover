@@ -18,7 +18,6 @@ from os import environ
 import gettext
 from Components.Language import language
 from Components.Harddisk import harddiskmanager
-
 import os
 
 ###########################################################################
@@ -32,32 +31,20 @@ for p in harddiskmanager.getMountedPartitions(True):
 PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, 'Extensions/PluginSkinMover')
 mounted_string="Nothing mounted at "
 
-
 class storagedevicescreen(Screen, HelpableScreen):
     skin='''
-              <screen name="storagedevicescreen" position="center,center" title=" " size="1280,720" flags="wfNoBorder">
-            <widget source="Title" render="Label" position="80,80" size="750,30" zPosition="3" font="Regular;26" transparent="1"/>
-            <widget source="session.VideoPicture" render="Pig"  position="80,120" size="380,215" zPosition="3" backgroundColor="#ff000000"/>
-            <widget source="text" render="Label" position="80,470" size="260,25" font="Regular;22" transparent="1" zPosition="1" foregroundColor="#ffffff" />
-            
-            <widget source="oktext" render="Label" position="540,596" size="660,25" font="Regular;22" transparent="1" zPosition="1" halign="left" valign="center" />
-            <widget name="target" position="80,500" size="540,22" valign="left" font="Regular;22" transparent="1" />
-            <widget name="filelist" position="550,120" size="610,503" zPosition="1" scrollbarMode="showOnDemand" selectionDisabled="1" transparent="1" />
-		
-	  
-        	
-
-		<ePixmap position="210,635" size="25,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_red.png" transparent="1" alphatest="on"/>
-		<ePixmap position="495,635" size="260,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
-		
-
-		
-                <widget source="key_red" render="Label" position="240,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-		<widget source="key_green" render="Label" position="525,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-		   
-           
-           
-           </screen>''' % resolveFilename(SCOPE_PLUGINS)
+        <screen name="storagedevicescreen" position="center,center" title=" " size="1280,720" flags="wfNoBorder">
+        <widget source="Title" render="Label" position="80,80" size="750,30" zPosition="3" font="Regular;26" transparent="1"/>
+        <widget source="session.VideoPicture" render="Pig"  position="80,120" size="380,215" zPosition="3" backgroundColor="#ff000000"/>
+        <widget source="text" render="Label" position="80,470" size="260,25" font="Regular;22" transparent="1" zPosition="1" foregroundColor="#ffffff" />
+        <widget source="oktext" render="Label" position="540,596" size="660,25" font="Regular;22" transparent="1" zPosition="1" halign="left" valign="center" />
+        <widget name="target" position="80,500" size="540,22" valign="left" font="Regular;22" transparent="1" />
+        <widget name="filelist" position="550,120" size="610,503" zPosition="1" scrollbarMode="showOnDemand" selectionDisabled="1" transparent="1" />
+	<ePixmap position="210,635" size="25,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_red.png" transparent="1" alphatest="on"/>
+	<ePixmap position="495,635" size="260,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
+        <widget source="key_red" render="Label" position="240,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
+	<widget source="key_green" render="Label" position="525,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
+        </screen>''' % ((resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS))
 
 
     def __init__(self, session, text = "", filename = "", currDir = None, location = None, userMode = False, windowTitle = _("Choose backup location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
@@ -82,15 +69,11 @@ class storagedevicescreen(Screen, HelpableScreen):
         self["mountlist"]= MenuList(mountedDevs)
 	self["key_red"] = StaticText(_("Cancel"))
 	self["key_green"] = StaticText(_("Save"))
-
         self["green"] = Pixmap()
         self["red"] = Pixmap()
-
         self["target"] = Label()
-
         if self.userMode:
             self.usermodeOn()
-
         class BackupLocationActionMap(HelpableActionMap):
             def __init__(self, parent, context, actions = { }, prio=0):
                 HelpableActionMap.__init__(self, parent, context, actions, prio)
@@ -208,8 +191,7 @@ class storagedevicescreen(Screen, HelpableScreen):
 			f.close()	
 			if not mounted:
  	             		self.session.open(MessageBox,mounted_string+str(path),MessageBox.TYPE_ERROR)
-                                return False                 
-
+                                return False
 		        if  os.path.exists(config.PluginSkinMover.targetdevice.value):
 		             try:
 		 		os.chmod(config.PluginSkinMover.targetdevice.value,0777)
@@ -217,7 +199,6 @@ class storagedevicescreen(Screen, HelpableScreen):
                                 pass 
                         return True   
     def select(self):
-        
         currentFolder = self.getPreferredFolder()
         foldermounted=self.checkmountBackupPath(currentFolder)
         if foldermounted==True:
@@ -232,7 +213,6 @@ class storagedevicescreen(Screen, HelpableScreen):
                         return self.saveSelection(True)
                 except OSError:
                     pass
-
                 self.session.openWithCallback(self.saveSelection, MessageBox, _("There might not be enough Space on the selected Partition.\nDo you really want to continue?"), type = MessageBox.TYPE_YESNO )
             else:
                 self.saveSelection(True)
