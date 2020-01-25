@@ -105,7 +105,7 @@ class PluginSkinMoverScreen(Screen):
 		<widget source="key_blue" render="Label" position="815,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 	
         
-        </screen>""" % resolveFilename(SCOPE_PLUGINS)
+        </screen>""" % ((resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS))
 	
 	def __init__(self, session):
 		Screen.__init__(self, session)
