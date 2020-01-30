@@ -126,8 +126,8 @@ class SkinMoverScreen(Screen):
 		except:targetlocation="/media/usb"
 		self.mount_dir = targetlocation
 		self.ext_dir = targetlocation+"/enigma2"
-		self.enabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png")
-		self.disabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png")
+		self.enabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
+		self.disabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
 		
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
