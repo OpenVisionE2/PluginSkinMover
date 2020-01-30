@@ -94,21 +94,21 @@ class PluginSkinMoverScreen(Screen):
 			</convert>
 		</widget>
 		<widget name="Picture" position="780,240" size="100,40" alphatest="on" />
-		<ePixmap position="10,455" size="25,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_red.png" transparent="1" alphatest="on"/>
-		<ePixmap position="215,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
-		<ePixmap position="500,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_yellow.png" transparent="1" alphatest="on"/>
-		<ePixmap position="785,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_blue.png" transparent="1" alphatest="on"/>
-		
+		<ePixmap position="10,455" size="25,25" zPosition="0" pixmap="~/pic/button_red.png" transparent="1" alphatest="on"/>
+		<ePixmap position="215,455" size="185,25" zPosition="0" pixmap="~/pic/button_green.png" transparent="1" alphatest="on"/>
+		<ePixmap position="500,455" size="185,25" zPosition="0" pixmap="~/pic/button_yellow.png" transparent="1" alphatest="on"/>
+		<ePixmap position="785,455" size="185,25" zPosition="0" pixmap="~/pic/button_blue.png" transparent="1" alphatest="on"/>
                 <widget source="key_red" render="Label" position="40,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_green" render="Label" position="245,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_yellow" render="Label" position="530,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_blue" render="Label" position="815,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 	
         
-        </screen>""" % ((resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS))
+        </screen>"""
 	
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover")
 		self.session = session
 		
 		self.title = pname + " (" + pversion + ")"
