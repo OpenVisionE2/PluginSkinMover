@@ -44,8 +44,7 @@ class storagedevicescreen(Screen, HelpableScreen):
 	<ePixmap position="495,635" size="260,25" zPosition="0" pixmap="~/pic/button_green.png" transparent="1" alphatest="on"/>
         <widget source="key_red" render="Label" position="240,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 	<widget source="key_green" render="Label" position="525,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-        </screen>''' % ((resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS))
-
+        </screen>'''
 
     def __init__(self, session, text = "", filename = "", currDir = None, location = None, userMode = False, windowTitle = _("Choose backup location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
         Screen.__init__(self, session)
