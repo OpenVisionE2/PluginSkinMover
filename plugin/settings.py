@@ -40,15 +40,15 @@ class storagedevicescreen(Screen, HelpableScreen):
         <widget source="oktext" render="Label" position="540,596" size="660,25" font="Regular;22" transparent="1" zPosition="1" halign="left" valign="center" />
         <widget name="target" position="80,500" size="540,22" valign="left" font="Regular;22" transparent="1" />
         <widget name="filelist" position="550,120" size="610,503" zPosition="1" scrollbarMode="showOnDemand" selectionDisabled="1" transparent="1" />
-	<ePixmap position="210,635" size="25,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_red.png" transparent="1" alphatest="on"/>
-	<ePixmap position="495,635" size="260,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
+	<ePixmap position="210,635" size="25,25" zPosition="0" pixmap="~/pic/button_red.png" transparent="1" alphatest="on"/>
+	<ePixmap position="495,635" size="260,25" zPosition="0" pixmap="~/pic/button_green.png" transparent="1" alphatest="on"/>
         <widget source="key_red" render="Label" position="240,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 	<widget source="key_green" render="Label" position="525,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-        </screen>''' % ((resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS))
-
+        </screen>'''
 
     def __init__(self, session, text = "", filename = "", currDir = None, location = None, userMode = False, windowTitle = _("Choose backup location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
         Screen.__init__(self, session)
+	self.skin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover")
         HelpableScreen.__init__(self)
         self.skinName='storagedevicescreen'
         self["text"] = StaticText(_("Selected device location:"))

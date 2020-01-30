@@ -48,14 +48,14 @@ pdate = "201406013"
 config.PluginSkinMover = ConfigSubsection()
 config.PluginSkinMover.targetdevice=ConfigText(default="/media/usb", fixed_size = False)
 def foldersize(size):
-         try:  
-            
+         try:
             fspace=round(float((size) / (1024.0*1024.0)),2)        
 	    #tspace=round(float((capacity) / (1024.0 * 1024.0)),1)
             spacestr=str(fspace)+'MB'
             return spacestr
          except:
             return ""
+
 def freespace(folder='/'):
          try:  
             diskSpace = os.statvfs(folder)
@@ -71,7 +71,7 @@ def freespace(folder='/'):
 def Plugins(**kwargs):
 	return [PluginDescriptor(name=_("PluginSkinMover"), description=_("Move your Plugins and skins"), where = PluginDescriptor.WHERE_PLUGINMENU, icon="plugin.png", fnc=main),
 		PluginDescriptor(name="PluginSkinMover", description=_("Move your Plugins and skins"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
-		
+
 def main(session, **kwargs):
 	print "[PluginSkinMover]: Started ..."
 	session.open(PluginSkinMoverScreen)
@@ -94,21 +94,19 @@ class PluginSkinMoverScreen(Screen):
 			</convert>
 		</widget>
 		<widget name="Picture" position="780,240" size="100,40" alphatest="on" />
-		<ePixmap position="10,455" size="25,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_red.png" transparent="1" alphatest="on"/>
-		<ePixmap position="215,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_green.png" transparent="1" alphatest="on"/>
-		<ePixmap position="500,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_yellow.png" transparent="1" alphatest="on"/>
-		<ePixmap position="785,455" size="185,25" zPosition="0" pixmap="%s/Extensions/PluginSkinMover/pic/button_blue.png" transparent="1" alphatest="on"/>
-		
+		<ePixmap position="10,455" size="25,25" zPosition="0" pixmap="~/pic/button_red.png" transparent="1" alphatest="on"/>
+		<ePixmap position="215,455" size="185,25" zPosition="0" pixmap="~/pic/button_green.png" transparent="1" alphatest="on"/>
+		<ePixmap position="500,455" size="185,25" zPosition="0" pixmap="~/pic/button_yellow.png" transparent="1" alphatest="on"/>
+		<ePixmap position="785,455" size="185,25" zPosition="0" pixmap="~/pic/button_blue.png" transparent="1" alphatest="on"/>
                 <widget source="key_red" render="Label" position="40,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_green" render="Label" position="245,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_yellow" render="Label" position="530,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_blue" render="Label" position="815,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-	
-        
-        </screen>""" % ((resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS), resolveFilename(SCOPE_PLUGINS))
+        </screen>"""
 	
 	def __init__(self, session):
 		Screen.__init__(self, session)
+		self.skin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover")
 		self.session = session
 		
 		self.title = pname + " (" + pversion + ")"
@@ -116,7 +114,6 @@ class PluginSkinMoverScreen(Screen):
 			self["title"]=StaticText(self.title)
 		except:
 			print 'self["title"] was not found in skin'
-			
 		self["info"] = Label("Please wait..")				
 		self["Picture"] = Pixmap()
 		self["key_red"] = StaticText(_("Exit"))
@@ -142,7 +139,6 @@ class PluginSkinMoverScreen(Screen):
 		self.ext_dir = targetlocation+"/Extensions"
 		self.enabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
 		self.disabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
-		
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
 		
@@ -168,7 +164,6 @@ class PluginSkinMoverScreen(Screen):
         def selectionChanged(self,result=None):
                 if result==True:
                    self.createMenuList()
-                   
 		try:sel = self["menu"].getCurrent()
 		except:return
 		try:
@@ -178,8 +173,7 @@ class PluginSkinMoverScreen(Screen):
 		  elif sel[1] == self.disabled_pic:
 			self["key_green"].setText(_("Exported"))
 		except:
-                  pass	
-			
+                  pass
 		self.getdevices_sizes()	
 		# Flash size
         def getdevices_sizes(self):
@@ -189,34 +183,21 @@ class PluginSkinMoverScreen(Screen):
                    freeflash = freespace("/")#bytes2human(freeflash, 1)
 		except:
                    pass
-		
-		
-
 		# Device size
 		freedev="The device is unavailable or not mounted"
 		try:
 			#stat = statvfs(self.mount_dir)
-			
 			devicelocation=config.PluginSkinMover.targetdevice.value
 			self.mount_dir=devicelocation
 			freedev =devicelocation+" "+ freespace(devicelocation)
-			
 		except:
-			
 			try:devicelocation=config.PluginSkinMover.targetdevice.value
 			except:devicelocation='unknown'
-			freedev =devicelocation+" "+ freedev                       
-                        
+			freedev =devicelocation+" "+ freedev
                         pass
 		#freedev = (stat.f_bavail or stat.f_bfree) * stat.f_bsize
-		
-
 		self["info"].setText(_("Flash: %s \n Device: %s") % (freeflash, freedev))
-		        
-        
-        
-        
-        
+
 	def createMenuList(self):
 		self["info"].setText(_("read ..."))
 		chdir(self.plugin_base_dir)
@@ -235,7 +216,6 @@ class PluginSkinMoverScreen(Screen):
 				size = str(foldersize(free))
 				#pic
 				pic = self.enabled_pic
-
 				if path.exists(linked_dir):
 					if path.islink(linked_dir):
 						pic = self.disabled_pic
@@ -264,14 +244,12 @@ class PluginSkinMoverScreen(Screen):
 		self.close()
 
 	def runMenuEntry(self):
-	
 		try:
                    devicelocation=config.PluginSkinMover.targetdevice.value
 		   self.mount_dir=devicelocation
 		   print "242",self.mount_dir
                 except:
-                   pass   	
-	
+                   pass
 		if os_path.ismount(self.mount_dir):
 			self["info"].setText(_("Moving, please wait ..."))
 			sel = self["menu"].getCurrent()
@@ -314,7 +292,6 @@ class PluginSkinMoverScreen(Screen):
 			if error:
 				self.session.open(MessageBox, _("Plugin movement was not successful, please check devices!"), type = MessageBox.TYPE_ERROR, timeout = 10)
 				error = False
-				
 			self.createMenuList()
 		else:
 			self.session.open(MessageBox, _("No device to %s mounted. Plugin movement is not possible!") % self.mount_dir, type = MessageBox.TYPE_ERROR, timeout = 10)
