@@ -1,5 +1,6 @@
-#!/usr/bin/env python
 # -*- coding: utf-8 -*-
+from __future__ import print_function
+#!/usr/bin/env python
 #######################################################################
 # maintainer: <schomi@vuplus-support.org> 
 # This plugin is free software, you are allowed to
@@ -102,7 +103,7 @@ class SkinMoverScreen(Screen):
 		try:
 			self["title"]=StaticText(self.title)
 		except:
-			print 'self["title"] was not found in skin'	
+			print('self["title"] was not found in skin'	)
 		self["info"] = Label("Please wait..")				
 		self["Picture"] = Pixmap()
 		self["key_red"] = StaticText(_("Exit"))
@@ -193,7 +194,7 @@ class SkinMoverScreen(Screen):
 		chdir(self.plugin_base_dir)
 		f_list = []
 		list_dir = sorted(listdir(self.plugin_base_dir))
-#		print list_dir
+#		print(list_dir)
 		for f in list_dir:
 			linked_dir = self.plugin_base_dir + "/" + f
 			if os_path.isdir(linked_dir):
@@ -217,7 +218,7 @@ class SkinMoverScreen(Screen):
 					f_list.append((f, pic, size))
 		menu_list = [ ]
 		for entry in f_list:
-		        print "166",entry
+		        print("166",entry)
 			menu_list.append((entry[0], entry[1], str(entry[2])))
 		self["menu"].updateList(menu_list)
 		self.selectionChanged(False)
@@ -239,7 +240,7 @@ class SkinMoverScreen(Screen):
 		try:
                    devicelocation=config.PluginSkinMover.targetdevice.value
 		   self.mount_dir=devicelocation
-		   print "242",self.mount_dir
+		   print("242",self.mount_dir)
                 except:
                    pass
 		if os_path.ismount(self.mount_dir):
@@ -248,9 +249,9 @@ class SkinMoverScreen(Screen):
 			self.ext_dir = self.mount_dir+"/enigma2"
 			inflash = self.plugin_base_dir + "/" + sel[0] 
 			notinflash = self.ext_dir + "/" + sel[0]
-			print "[PluginSkinMover] " + inflash			
-			print "[PluginSkinMover] " + notinflash
-			print "[PluginSkinMover] Start movement!"
+			print("[PluginSkinMover] " + inflash			)
+			print("[PluginSkinMover] " + notinflash)
+			print("[PluginSkinMover] Start movement!")
 			error = False
 			if sel[1] == self.enabled_pic:
 				if path.exists(notinflash):
@@ -261,7 +262,7 @@ class SkinMoverScreen(Screen):
 					error = False
 				except:
 					error = True
-					print "[PluginSkinMover] Error during movement!"
+					print("[PluginSkinMover] Error during movement!")
 				if error == False:
 				        try:
 					  shutil.rmtree(inflash)
@@ -277,7 +278,7 @@ class SkinMoverScreen(Screen):
 						error = False
 					except:
 						error = True
-						print "[PluginSkinMover] Error during movement!"
+						print("[PluginSkinMover] Error during movement!")
 					if error == False:
 						try:shutil.rmtree(notinflash)
 						except:pass

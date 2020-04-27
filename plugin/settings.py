@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
@@ -155,7 +157,7 @@ class storagedevicescreen(Screen, HelpableScreen):
             ret = ''.join((self.getPreferredFolder(), self.filename))
             config.PluginSkinMover.targetdevice.value = ret
             config.PluginSkinMover.targetdevice.save()
-            print "175",config.PluginSkinMover.targetdevice.value
+            print("175",config.PluginSkinMover.targetdevice.value)
             config.save()
             self.close(True)
         else:
@@ -168,7 +170,7 @@ class storagedevicescreen(Screen, HelpableScreen):
            	else:
 			sp=[]
 			sp=path.split("/")
-			print sp
+			print(sp)
 			if len(sp) > 1:
 				if sp[1] != "media":
  	             			self.session.open(MessageBox,mounted_string + path,  MessageBox.TYPE_ERROR)                 
@@ -181,11 +183,11 @@ class storagedevicescreen(Screen, HelpableScreen):
         		while (m) and not mounted:                                             
 				if m.find("/%s/%s" % (sp[1],sp[2])) is not -1:
 					mounted=True
-					print m
+					print(m)
 					sp2=m.split(" ")
-					print sp2
+					print(sp2)
 					if sp2[2].startswith("ext") or sp2[2].endswith("fat"):
-						print "[stFlash] swappable"
+						print("[stFlash] swappable")
 						self.swappable=True
            			m = f.readline()                                                 
 			f.close()	
