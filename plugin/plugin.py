@@ -257,7 +257,7 @@ class PluginSkinMoverScreen(Screen):
 			inflash = self.plugin_base_dir + "/" + sel[0]
                         self.ext_dir = self.mount_dir+"/Extensions" 
 			notinflash = self.ext_dir + "/" + sel[0]
-			print("[PluginSkinMover] " + inflash			)
+			print("[PluginSkinMover] " + inflash)
 			print("[PluginSkinMover] " + notinflash)
 			print("[PluginSkinMover] Start movement!")
 			error = False

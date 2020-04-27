@@ -103,7 +103,7 @@ class SkinMoverScreen(Screen):
 		try:
 			self["title"]=StaticText(self.title)
 		except:
-			print('self["title"] was not found in skin'	)
+			print('self["title"] was not found in skin')
 		self["info"] = Label("Please wait..")				
 		self["Picture"] = Pixmap()
 		self["key_red"] = StaticText(_("Exit"))
@@ -249,7 +249,7 @@ class SkinMoverScreen(Screen):
 			self.ext_dir = self.mount_dir+"/enigma2"
 			inflash = self.plugin_base_dir + "/" + sel[0] 
 			notinflash = self.ext_dir + "/" + sel[0]
-			print("[PluginSkinMover] " + inflash			)
+			print("[PluginSkinMover] " + inflash)
 			print("[PluginSkinMover] " + notinflash)
 			print("[PluginSkinMover] Start movement!")
 			error = False
