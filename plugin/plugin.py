@@ -1,7 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
 from __future__ import print_function
-#!/usr/bin/env python
 #######################################################################
 # maintainer: <schomi@vuplus-support.org> 
 # This plugin is free software, you are allowed to
