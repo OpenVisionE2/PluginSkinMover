@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import print_function
+from __future__ import division, print_function
 #######################################################################
 # maintainer: <schomi@vuplus-support.org> 
 # This plugin is free software, you are allowed to
@@ -49,8 +49,8 @@ pdate = "201406013"
 # PluginSkinMover
 def foldersize(size):
          try:
-            fspace=round(float((size) / (1024.0*1024.0)),2)        
-	    #tspace=round(float((capacity) / (1024.0 * 1024.0)),1)
+            fspace=round(float((size) // (1024.0*1024.0)),2)        
+	    #tspace=round(float((capacity) // (1024.0 * 1024.0)),1)
             spacestr=str(fspace)+'MB'
             return spacestr
          except:
@@ -60,8 +60,8 @@ def freespace(folder='/'):
             diskSpace = os.statvfs(folder)
             capacity = float(diskSpace.f_bsize * diskSpace.f_blocks)
             available = float(diskSpace.f_bsize * diskSpace.f_bavail)
-            fspace=round(float((available) / (1024.0*1024.0)),2)        
-	    tspace=round(float((capacity) / (1024.0 * 1024.0)),1)
+            fspace=round(float((available) // (1024.0*1024.0)),2)        
+	    tspace=round(float((capacity) // (1024.0 * 1024.0)),1)
             spacestr='Free space(' +str(fspace)+'MB) Total space(' + str(tspace)+'MB)'
             return spacestr
          except:
