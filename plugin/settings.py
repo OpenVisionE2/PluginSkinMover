@@ -1,6 +1,6 @@
 #!/usr/bin/python
 # -*- coding: utf-8 -*-
-from __future__ import division, print_function
+from __future__ import print_function
 from Screens.Screen import Screen
 from Screens.MessageBox import MessageBox
 from Screens.InputBox import InputBox
@@ -212,7 +212,7 @@ class storagedevicescreen(Screen, HelpableScreen):
             if self.minFree is not None:
                 try:
                     s = os.statvfs(currentFolder)
-                    if (s.f_bavail * s.f_bsize) // 314572800 > self.minFree:
+                    if (s.f_bavail * s.f_bsize) / 314572800 > self.minFree:
                         return self.saveSelection(True)
                 except OSError:
                     pass
