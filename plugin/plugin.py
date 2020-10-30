@@ -18,7 +18,7 @@ extended by mfaraj57
 -removed bytes2human modules and replaced by local functions
 '''
 from Components.ActionMap import ActionMap
-from Components.config import config, getConfigListEntry, ConfigSubsection,ConfigText, ConfigSelection, ConfigYesNo, NoSave, ConfigNothing, ConfigNumber
+from Components.config import config, getConfigListEntry, ConfigSubsection, ConfigText, ConfigSelection, ConfigYesNo, NoSave, ConfigNothing, ConfigNumber
 from Components.ConfigList import ConfigListScreen
 from Components.Label import Label
 from Components.Pixmap import Pixmap
@@ -50,7 +50,7 @@ config.PluginSkinMover = ConfigSubsection()
 config.PluginSkinMover.targetdevice=ConfigText(default="/media/usb", fixed_size = False)
 def foldersize(size):
          try:
-            fspace=round(float((size) / (1024.0*1024.0)),2)        
+            fspace=round(float((size) / (1024.0*1024.0)), 2)        
 	    #tspace=round(float((capacity) / (1024.0 * 1024.0)),1)
             spacestr=str(fspace)+'MB'
             return spacestr
@@ -62,8 +62,8 @@ def freespace(folder='/'):
             diskSpace = os.statvfs(folder)
             capacity = float(diskSpace.f_bsize * diskSpace.f_blocks)
             available = float(diskSpace.f_bsize * diskSpace.f_bavail)
-            fspace=round(float((available) / (1024.0*1024.0)),2)        
-	    tspace=round(float((capacity) / (1024.0 * 1024.0)),1)
+            fspace=round(float((available) / (1024.0*1024.0)), 2)        
+	    tspace=round(float((capacity) / (1024.0 * 1024.0)), 1)
             spacestr='Free space(' +str(fspace)+'MB) Total space(' + str(tspace)+'MB)'
             return spacestr
          except:
@@ -129,7 +129,7 @@ class PluginSkinMoverScreen(Screen):
 			"cancel": self.keyCancel,
 			"red": self.keyCancel,
 			"green": self.startmoving,
-			'blue':self.skinmover,
+			'blue': self.skinmover,
 			"yellow": self.showsettings,
 		}, -2)
 		
@@ -160,7 +160,7 @@ class PluginSkinMoverScreen(Screen):
         
         def showsettings(self):
                      from settings import storagedevicescreen
-                     self.session.openWithCallback(self.selectionChanged,storagedevicescreen)	    
+                     self.session.openWithCallback(self.selectionChanged, storagedevicescreen)	    
         
         def selectionChanged(self,result=None):
                 if result==True:
@@ -226,7 +226,7 @@ class PluginSkinMoverScreen(Screen):
 			
 		menu_list = [ ]
 		for entry in f_list:
-		        print("166",entry)
+		        print("166", entry)
 			menu_list.append((entry[0], entry[1], str(entry[2])))
 		self["menu"].updateList(menu_list)
 		self.selectionChanged(False)
@@ -248,7 +248,7 @@ class PluginSkinMoverScreen(Screen):
 		try:
                    devicelocation=config.PluginSkinMover.targetdevice.value
 		   self.mount_dir=devicelocation
-		   print("242",self.mount_dir)
+		   print("242", self.mount_dir)
                 except:
                    pass
 		if os_path.ismount(self.mount_dir):
@@ -282,7 +282,7 @@ class PluginSkinMoverScreen(Screen):
 					remove(inflash)
 					debug=True
 					try:
-						shutil.copytree(notinflash,inflash)
+						shutil.copytree(notinflash, inflash)
 						error = False
 					except:
 						error = True

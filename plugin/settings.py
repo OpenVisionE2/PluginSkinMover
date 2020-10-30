@@ -158,15 +158,15 @@ class storagedevicescreen(Screen, HelpableScreen):
             ret = ''.join((self.getPreferredFolder(), self.filename))
             config.PluginSkinMover.targetdevice.value = ret
             config.PluginSkinMover.targetdevice.save()
-            print("175",config.PluginSkinMover.targetdevice.value)
+            print("175", config.PluginSkinMover.targetdevice.value)
             config.save()
             self.close(True)
         else:
             self.close(False)
             
-    def checkmountBackupPath(self,path):
+    def checkmountBackupPath(self, path):
            	if path is None:
-              		self.session.open(MessageBox,_("nothing entered"),  MessageBox.TYPE_ERROR)
+              		self.session.open(MessageBox, _("nothing entered"),  MessageBox.TYPE_ERROR)
                         return False                 
            	else:
 			sp=[]
@@ -174,7 +174,7 @@ class storagedevicescreen(Screen, HelpableScreen):
 			print(sp)
 			if len(sp) > 1:
 				if sp[1] != "media":
- 	             			self.session.open(MessageBox,mounted_string + path,  MessageBox.TYPE_ERROR)                 
+ 	             			self.session.open(MessageBox, mounted_string + path,  MessageBox.TYPE_ERROR)                 
 					return False
 			mounted=False
 			self.swappable=False
@@ -182,7 +182,7 @@ class storagedevicescreen(Screen, HelpableScreen):
                 	f=open("/proc/mounts", "r")
        		 	m = f.readline()                                                    
         		while (m) and not mounted:                                             
-				if m.find("/%s/%s" % (sp[1],sp[2])) is not -1:
+				if m.find("/%s/%s" % (sp[1], sp[2])) is not -1:
 					mounted=True
 					print(m)
 					sp2=m.split(" ")
@@ -193,11 +193,11 @@ class storagedevicescreen(Screen, HelpableScreen):
            			m = f.readline()                                                 
 			f.close()	
 			if not mounted:
- 	             		self.session.open(MessageBox,mounted_string+str(path),MessageBox.TYPE_ERROR)
+ 	             		self.session.open(MessageBox, mounted_string+str(path), MessageBox.TYPE_ERROR)
                                 return False
 		        if  os.path.exists(config.PluginSkinMover.targetdevice.value):
 		             try:
-		 		os.chmod(config.PluginSkinMover.targetdevice.value,0777)
+		 		os.chmod(config.PluginSkinMover.targetdevice.value, 0777)
                              except:
                                 pass 
                         return True   
