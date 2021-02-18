@@ -134,8 +134,10 @@ class PluginSkinMoverScreen(Screen):
 		}, -2)
 		
 		self.plugin_base_dir = resolveFilename(SCOPE_PLUGINS, "Extensions")
-		try:targetlocation=config.PluginSkinMover.targetdevice.value
-		except:targetlocation="/media/usb"
+		try:
+		         targetlocation=config.PluginSkinMover.targetdevice.value
+		except:
+		         targetlocation="/media/usb"
 		self.mount_dir = targetlocation
 		self.ext_dir = targetlocation+"/Extensions"
 		self.enabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
@@ -165,8 +167,10 @@ class PluginSkinMoverScreen(Screen):
         def selectionChanged(self,result=None):
                 if result==True:
                    self.createMenuList()
-		try:sel = self["menu"].getCurrent()
-		except:return
+		try:
+		         sel = self["menu"].getCurrent()
+		except:
+		         return
 		try:
                   self.setPicture(sel[0])
 		  if sel[1] == self.enabled_pic:
@@ -192,8 +196,10 @@ class PluginSkinMoverScreen(Screen):
 			self.mount_dir=devicelocation
 			freedev =devicelocation+" "+ freespace(devicelocation)
 		except:
-			try:devicelocation=config.PluginSkinMover.targetdevice.value
-			except:devicelocation='unknown'
+			try:
+			         devicelocation=config.PluginSkinMover.targetdevice.value
+			except:
+			         devicelocation='unknown'
 			freedev =devicelocation+" "+ freedev
                         pass
 		#freedev = (stat.f_bavail or stat.f_bfree) * stat.f_bsize
@@ -288,8 +294,10 @@ class PluginSkinMoverScreen(Screen):
 						error = True
 						print("[PluginSkinMover] Error during movement!")
 					if error == False:
-						try:shutil.rmtree(notinflash)
-						except:pass
+						try:
+						         shutil.rmtree(notinflash)
+						except:
+						         pass
 			if error:
 				self.session.open(MessageBox, _("Plugin movement was not successful, please check devices!"), type = MessageBox.TYPE_ERROR, timeout = 10)
 				error = False
