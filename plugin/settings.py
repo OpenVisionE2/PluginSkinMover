@@ -32,10 +32,10 @@ for p in harddiskmanager.getMountedPartitions(True):
 ###########################################################################
 
 PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, 'Extensions/PluginSkinMover')
-mounted_string="Nothing mounted at "
+mounted_string = "Nothing mounted at "
 
 class storagedevicescreen(Screen, HelpableScreen):
-    skin='''
+    skin = '''
         <screen name="storagedevicescreen" position="center,center" title=" " size="1280,720" flags="wfNoBorder">
         <widget source="Title" render="Label" position="80,80" size="750,30" zPosition="3" font="Regular;26" transparent="1"/>
         <widget source="session.VideoPicture" render="Pig"  position="80,120" size="380,215" zPosition="3" backgroundColor="#ff000000"/>
@@ -53,7 +53,7 @@ class storagedevicescreen(Screen, HelpableScreen):
         Screen.__init__(self, session)
 	self.skin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover")
         HelpableScreen.__init__(self)
-        self.skinName='storagedevicescreen'
+        self.skinName = 'storagedevicescreen'
         self["text"] = StaticText(_("Selected device location:"))
         self["oktext"] = StaticText(_(" "))
         self.text = text
@@ -69,7 +69,7 @@ class storagedevicescreen(Screen, HelpableScreen):
         inhibitDirs = ["/bin", "/boot", "/dev", "/lib", "/proc", "/sbin", "/sys", "/mnt", "/var", "/home", "/tmp", "/srv", "/etc", "/share", "/usr", "/ba", "/MB_Images"]
         inhibitMounts = ["/mnt", "/ba", "/MB_Images"]
         self["filelist"] = FileList(currDir, showDirectories=True, showFiles=False, inhibitMounts=inhibitMounts, inhibitDirs=inhibitDirs)
-        self["mountlist"]= MenuList(mountedDevs)
+        self["mountlist"] = MenuList(mountedDevs)
 	self["key_red"] = StaticText(_("Cancel"))
 	self["key_green"] = StaticText(_("Save"))
         self["green"] = Pixmap()
@@ -166,36 +166,36 @@ class storagedevicescreen(Screen, HelpableScreen):
             
     def checkmountBackupPath(self, path):
            	if path is None:
-              		self.session.open(MessageBox, _("nothing entered"),  MessageBox.TYPE_ERROR)
+              		self.session.open(MessageBox, _("nothing entered"), MessageBox.TYPE_ERROR)
                         return False                 
            	else:
-			sp=[]
-			sp=path.split("/")
+			sp = []
+			sp = path.split("/")
 			print(sp)
 			if len(sp) > 1:
 				if sp[1] != "media":
- 	             			self.session.open(MessageBox, mounted_string + path,  MessageBox.TYPE_ERROR)                 
+ 	             			self.session.open(MessageBox, mounted_string + path, MessageBox.TYPE_ERROR)                 
 					return False
-			mounted=False
-			self.swappable=False
-			sp2=[]
-                	f=open("/proc/mounts", "r")
+			mounted = False
+			self.swappable = False
+			sp2 = []
+                	f = open("/proc/mounts", "r")
        		 	m = f.readline()                                                    
         		while (m) and not mounted:                                             
 				if m.find("/%s/%s" % (sp[1], sp[2])) is not -1:
-					mounted=True
+					mounted = True
 					print(m)
-					sp2=m.split(" ")
+					sp2 = m.split(" ")
 					print(sp2)
 					if sp2[2].startswith("ext") or sp2[2].endswith("fat"):
 						print("[stFlash] swappable")
-						self.swappable=True
+						self.swappable = True
            			m = f.readline()                                                 
 			f.close()	
 			if not mounted:
- 	             		self.session.open(MessageBox, mounted_string+str(path), MessageBox.TYPE_ERROR)
+ 	             		self.session.open(MessageBox, mounted_string + str(path), MessageBox.TYPE_ERROR)
                                 return False
-		        if  os.path.exists(config.PluginSkinMover.targetdevice.value):
+		        if os.path.exists(config.PluginSkinMover.targetdevice.value):
 		             try:
 		 		os.chmod(config.PluginSkinMover.targetdevice.value, 0777)
                              except:
@@ -203,8 +203,8 @@ class storagedevicescreen(Screen, HelpableScreen):
                         return True   
     def select(self):
         currentFolder = self.getPreferredFolder()
-        foldermounted=self.checkmountBackupPath(currentFolder)
-        if foldermounted==True:
+        foldermounted = self.checkmountBackupPath(currentFolder)
+        if foldermounted == True:
            pass
         else:
            return   

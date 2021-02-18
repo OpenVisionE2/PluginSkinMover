@@ -30,7 +30,7 @@ from Screens.Screen import Screen
 from Screens.Standby import TryQuitMainloop
 from Tools.Directories import *
 from Tools.LoadPixmap import LoadPixmap
-from enigma  import eTimer
+from enigma import eTimer
 from Tools import Notifications
 from os import listdir, remove, rename, system, path, symlink, chdir, statvfs
 from os import path as os_path
@@ -47,12 +47,12 @@ pdate = "201406013"
 
 # PluginSkinMover
 config.PluginSkinMover = ConfigSubsection()
-config.PluginSkinMover.targetdevice=ConfigText(default="/media/usb", fixed_size=False)
+config.PluginSkinMover.targetdevice = ConfigText(default="/media/usb", fixed_size=False)
 def foldersize(size):
          try:
-            fspace=round(float((size) / (1024.0*1024.0)), 2)        
+            fspace = round(float((size) / (1024.0 * 1024.0)), 2)        
 	    #tspace=round(float((capacity) / (1024.0 * 1024.0)),1)
-            spacestr=str(fspace)+'MB'
+            spacestr = str(fspace) + 'MB'
             return spacestr
          except:
             return ""
@@ -62,9 +62,9 @@ def freespace(folder='/'):
             diskSpace = os.statvfs(folder)
             capacity = float(diskSpace.f_bsize * diskSpace.f_blocks)
             available = float(diskSpace.f_bsize * diskSpace.f_bavail)
-            fspace=round(float((available) / (1024.0*1024.0)), 2)        
-	    tspace=round(float((capacity) / (1024.0 * 1024.0)), 1)
-            spacestr='Free space(' +str(fspace)+'MB) Total space(' + str(tspace)+'MB)'
+            fspace = round(float((available) / (1024.0 * 1024.0)), 2)        
+	    tspace = round(float((capacity) / (1024.0 * 1024.0)), 1)
+            spacestr = 'Free space(' + str(fspace) + 'MB) Total space(' + str(tspace) + 'MB)'
             return spacestr
          except:
             return "location is unavaiable or not mounted"
@@ -112,7 +112,7 @@ class PluginSkinMoverScreen(Screen):
 		
 		self.title = pname + " (" + pversion + ")"
 		try:
-			self["title"]=StaticText(self.title)
+			self["title"] = StaticText(self.title)
 		except:
 			print('self["title"] was not found in skin')
 		self["info"] = Label("Please wait..")				
@@ -135,11 +135,11 @@ class PluginSkinMoverScreen(Screen):
 		
 		self.plugin_base_dir = resolveFilename(SCOPE_PLUGINS, "Extensions")
 		try:
-		         targetlocation=config.PluginSkinMover.targetdevice.value
+		         targetlocation = config.PluginSkinMover.targetdevice.value
 		except:
-		         targetlocation="/media/usb"
+		         targetlocation = "/media/usb"
 		self.mount_dir = targetlocation
-		self.ext_dir = targetlocation+"/Extensions"
+		self.ext_dir = targetlocation + "/Extensions"
 		self.enabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
 		self.disabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
@@ -165,7 +165,7 @@ class PluginSkinMoverScreen(Screen):
                      self.session.openWithCallback(self.selectionChanged, storagedevicescreen)	    
         
         def selectionChanged(self,result=None):
-                if result==True:
+                if result == True:
                    self.createMenuList()
 		try:
 		         sel = self["menu"].getCurrent()
@@ -182,25 +182,25 @@ class PluginSkinMoverScreen(Screen):
 		self.getdevices_sizes()	
 		# Flash size
         def getdevices_sizes(self):
-		freeflash='Unable to read flash size'
+		freeflash = 'Unable to read flash size'
 		try:
                    stat = statvfs("/")
                    freeflash = freespace("/")#bytes2human(freeflash, 1)
 		except:
                    pass
 		# Device size
-		freedev="The device is unavailable or not mounted"
+		freedev = "The device is unavailable or not mounted"
 		try:
 			#stat = statvfs(self.mount_dir)
-			devicelocation=config.PluginSkinMover.targetdevice.value
-			self.mount_dir=devicelocation
-			freedev =devicelocation+" "+ freespace(devicelocation)
+			devicelocation = config.PluginSkinMover.targetdevice.value
+			self.mount_dir = devicelocation
+			freedev = devicelocation + " " + freespace(devicelocation)
 		except:
 			try:
-			         devicelocation=config.PluginSkinMover.targetdevice.value
+			         devicelocation = config.PluginSkinMover.targetdevice.value
 			except:
-			         devicelocation='unknown'
-			freedev =devicelocation+" "+ freedev
+			         devicelocation = 'unknown'
+			freedev = devicelocation + " " + freedev
                         pass
 		#freedev = (stat.f_bavail or stat.f_bfree) * stat.f_bsize
 		self["info"].setText(_("Flash: %s \n Device: %s") % (freeflash, freedev))
@@ -252,8 +252,8 @@ class PluginSkinMoverScreen(Screen):
 
 	def runMenuEntry(self):
 		try:
-                   devicelocation=config.PluginSkinMover.targetdevice.value
-		   self.mount_dir=devicelocation
+                   devicelocation = config.PluginSkinMover.targetdevice.value
+		   self.mount_dir = devicelocation
 		   print("242", self.mount_dir)
                 except:
                    pass
@@ -261,7 +261,7 @@ class PluginSkinMoverScreen(Screen):
 			self["info"].setText(_("Moving, please wait ..."))
 			sel = self["menu"].getCurrent()
 			inflash = self.plugin_base_dir + "/" + sel[0]
-                        self.ext_dir = self.mount_dir+"/Extensions" 
+                        self.ext_dir = self.mount_dir + "/Extensions" 
 			notinflash = self.ext_dir + "/" + sel[0]
 			print("[PluginSkinMover] " + inflash)
 			print("[PluginSkinMover] " + notinflash)
@@ -270,7 +270,7 @@ class PluginSkinMoverScreen(Screen):
 			if sel[1] == self.enabled_pic:
 				if path.exists(notinflash):
 					shutil.rmtree(notinflash)
-				debug=True
+				debug = True
                                 try:
 					shutil.copytree(inflash, notinflash)
 					error = False
@@ -286,7 +286,7 @@ class PluginSkinMoverScreen(Screen):
 			elif sel[1] == self.disabled_pic:
 				if path.islink(inflash):
 					remove(inflash)
-					debug=True
+					debug = True
 					try:
 						shutil.copytree(notinflash, inflash)
 						error = False

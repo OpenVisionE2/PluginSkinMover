@@ -49,9 +49,9 @@ pdate = "201406013"
 # PluginSkinMover
 def foldersize(size):
          try:
-            fspace=round(float((size) / (1024.0*1024.0)), 2)        
+            fspace = round(float((size) / (1024.0 * 1024.0)), 2)        
 	    #tspace=round(float((capacity) / (1024.0 * 1024.0)),1)
-            spacestr=str(fspace)+'MB'
+            spacestr = str(fspace) + 'MB'
             return spacestr
          except:
             return ""
@@ -60,9 +60,9 @@ def freespace(folder='/'):
             diskSpace = os.statvfs(folder)
             capacity = float(diskSpace.f_bsize * diskSpace.f_blocks)
             available = float(diskSpace.f_bsize * diskSpace.f_bavail)
-            fspace=round(float((available) / (1024.0*1024.0)), 2)        
-	    tspace=round(float((capacity) / (1024.0 * 1024.0)), 1)
-            spacestr='Free space(' +str(fspace)+'MB) Total space(' + str(tspace)+'MB)'
+            fspace = round(float((available) / (1024.0 * 1024.0)), 2)        
+	    tspace = round(float((capacity) / (1024.0 * 1024.0)), 1)
+            spacestr = 'Free space(' + str(fspace) + 'MB) Total space(' + str(tspace) + 'MB)'
             return spacestr
          except:
             return "location is unavaiable or not mounted"
@@ -101,7 +101,7 @@ class SkinMoverScreen(Screen):
 		self.session = session
 		self.title = pname + " (" + pversion + ")"
 		try:
-			self["title"]=StaticText(self.title)
+			self["title"] = StaticText(self.title)
 		except:
 			print('self["title"] was not found in skin')
 		self["info"] = Label("Please wait..")				
@@ -124,11 +124,11 @@ class SkinMoverScreen(Screen):
 		
 		self.plugin_base_dir = "/usr/share/enigma2"
 		try:
-		         targetlocation=config.PluginSkinMover.targetdevice.value
+		         targetlocation = config.PluginSkinMover.targetdevice.value
 		except:
-		         targetlocation="/media/usb"
+		         targetlocation = "/media/usb"
 		self.mount_dir = targetlocation
-		self.ext_dir = targetlocation+"/enigma2"
+		self.ext_dir = targetlocation + "/enigma2"
 		self.enabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
 		self.disabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
 		
@@ -154,7 +154,7 @@ class SkinMoverScreen(Screen):
                      self.session.openWithCallback(self.selectionChanged, storagedevicescreen)	    
         
         def selectionChanged(self,result=None):
-                if result==True:
+                if result == True:
                    self.createMenuList()
 		try:
 		         sel = self["menu"].getCurrent()
@@ -172,25 +172,25 @@ class SkinMoverScreen(Screen):
 		# Flash size
 
         def getdevices_sizes(self):
-		freeflash='Unable to read flash size'
+		freeflash = 'Unable to read flash size'
 		try:
                    stat = statvfs("/")
                    freeflash = freespace("/")#bytes2human(freeflash, 1)
 		except:
                    pass
 		# Device size
-		freedev="The device is unavailable or not mounted"
+		freedev = "The device is unavailable or not mounted"
 		try:
 			#stat = statvfs(self.mount_dir)
-			devicelocation=config.PluginSkinMover.targetdevice.value
-			self.mount_dir=devicelocation
-			freedev =devicelocation+" "+ freespace(devicelocation)
+			devicelocation = config.PluginSkinMover.targetdevice.value
+			self.mount_dir = devicelocation
+			freedev = devicelocation + " " + freespace(devicelocation)
 		except:
 			try:
-			         devicelocation=config.PluginSkinMover.targetdevice.value
+			         devicelocation = config.PluginSkinMover.targetdevice.value
 			except:
-			         devicelocation='unknown'
-			freedev =devicelocation+" "+ freedev
+			         devicelocation = 'unknown'
+			freedev = devicelocation + " " + freedev
                         pass
 		#freedev = (stat.f_bavail or stat.f_bfree) * stat.f_bsize
 		self["info"].setText(_("Flash: %s \n Device: %s") % (freeflash, freedev))
@@ -204,7 +204,7 @@ class SkinMoverScreen(Screen):
 		for f in list_dir:
 			linked_dir = self.plugin_base_dir + "/" + f
 			if os_path.isdir(linked_dir):
-                                if not os.path.exists(linked_dir+'/skin.xml'):
+                                if not os.path.exists(linked_dir + '/skin.xml'):
                                    continue
 				# Flash size
 				try:
@@ -244,15 +244,15 @@ class SkinMoverScreen(Screen):
 
 	def runMenuEntry(self):
 		try:
-                   devicelocation=config.PluginSkinMover.targetdevice.value
-		   self.mount_dir=devicelocation
+                   devicelocation = config.PluginSkinMover.targetdevice.value
+		   self.mount_dir = devicelocation
 		   print("242", self.mount_dir)
                 except:
                    pass
 		if os_path.ismount(self.mount_dir):
 			self["info"].setText(_("Moving, please wait ..."))
 			sel = self["menu"].getCurrent()
-			self.ext_dir = self.mount_dir+"/enigma2"
+			self.ext_dir = self.mount_dir + "/enigma2"
 			inflash = self.plugin_base_dir + "/" + sel[0] 
 			notinflash = self.ext_dir + "/" + sel[0]
 			print("[PluginSkinMover] " + inflash)
@@ -262,7 +262,7 @@ class SkinMoverScreen(Screen):
 			if sel[1] == self.enabled_pic:
 				if path.exists(notinflash):
 					shutil.rmtree(notinflash)
-				debug=True
+				debug = True
                                 try:
 					shutil.copytree(inflash, notinflash)
 					error = False
@@ -278,7 +278,7 @@ class SkinMoverScreen(Screen):
 			elif sel[1] == self.disabled_pic:
 				if path.islink(inflash):
 					remove(inflash)
-					debug=True
+					debug = True
 					try:
 						shutil.copytree(notinflash, inflash)
 						error = False
