@@ -34,6 +34,7 @@ for p in harddiskmanager.getMountedPartitions(True):
 PLUGIN_PATH = resolveFilename(SCOPE_PLUGINS, 'Extensions/PluginSkinMover')
 mounted_string = "Nothing mounted at "
 
+
 class storagedevicescreen(Screen, HelpableScreen):
     skin = '''
         <screen name="storagedevicescreen" position="center,center" title=" " size="1280,720" flags="wfNoBorder">
@@ -77,6 +78,7 @@ class storagedevicescreen(Screen, HelpableScreen):
         self["target"] = Label()
         if self.userMode:
             self.usermodeOn()
+
         class BackupLocationActionMap(HelpableActionMap):
             def __init__(self, parent, context, actions={}, prio=0):
                 HelpableActionMap.__init__(self, parent, context, actions, prio)
@@ -201,6 +203,7 @@ class storagedevicescreen(Screen, HelpableScreen):
                              except:
                                 pass 
                         return True   
+
     def select(self):
         currentFolder = self.getPreferredFolder()
         foldermounted = self.checkmountBackupPath(currentFolder)

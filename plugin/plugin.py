@@ -48,6 +48,8 @@ pdate = "201406013"
 # PluginSkinMover
 config.PluginSkinMover = ConfigSubsection()
 config.PluginSkinMover.targetdevice = ConfigText(default="/media/usb", fixed_size=False)
+
+
 def foldersize(size):
          try:
             fspace = round(float((size) / (1024.0 * 1024.0)), 2)        
@@ -56,6 +58,7 @@ def foldersize(size):
             return spacestr
          except:
             return ""
+
 
 def freespace(folder='/'):
          try:  
@@ -69,13 +72,16 @@ def freespace(folder='/'):
          except:
             return "location is unavaiable or not mounted"
 
+
 def Plugins(**kwargs):
 	return [PluginDescriptor(name=_("PluginSkinMover"), description=_("Move your Plugins and skins"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="plugin.png", fnc=main),
 		PluginDescriptor(name="PluginSkinMover", description=_("Move your Plugins and skins"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
 
+
 def main(session, **kwargs):
 	print("[PluginSkinMover]: Started ...")
 	session.open(PluginSkinMoverScreen)
+
 
 class PluginSkinMoverScreen(Screen):
 	skin = """
@@ -181,6 +187,7 @@ class PluginSkinMoverScreen(Screen):
                   pass
 		self.getdevices_sizes()	
 		# Flash size
+
         def getdevices_sizes(self):
 		freeflash = 'Unable to read flash size'
 		try:
@@ -305,6 +312,7 @@ class PluginSkinMoverScreen(Screen):
 		else:
 			self.session.open(MessageBox, _("No device to %s mounted. Plugin movement is not possible!") % self.mount_dir, type=MessageBox.TYPE_ERROR, timeout=10)
                 self.selectionChanged()
+
 	def GetFolderSize(self, path):
 		TotalSize = 0
 		for item in os_walk(path):

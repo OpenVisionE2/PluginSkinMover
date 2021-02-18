@@ -47,6 +47,8 @@ pversion = "0.6" ## extended by mfaraj57
 pdate = "201406013"
 
 # PluginSkinMover
+
+
 def foldersize(size):
          try:
             fspace = round(float((size) / (1024.0 * 1024.0)), 2)        
@@ -55,6 +57,8 @@ def foldersize(size):
             return spacestr
          except:
             return ""
+
+
 def freespace(folder='/'):
          try:  
             diskSpace = os.statvfs(folder)
@@ -66,6 +70,7 @@ def freespace(folder='/'):
             return spacestr
          except:
             return "location is unavaiable or not mounted"
+
 
 class SkinMoverScreen(Screen):
 	skin = """
@@ -139,6 +144,7 @@ class SkinMoverScreen(Screen):
 		self.timer = eTimer()
                 self.timer.callback.append(self.createMenuList)
                 self.timer.start(50, 1)
+
         def startmoving(self):
                 self["info"].setText("Moving skin,please wait...")
 		self.timer = eTimer()
@@ -297,6 +303,7 @@ class SkinMoverScreen(Screen):
 		else:
 			self.session.open(MessageBox, _("No device to %s mounted. Skin movement is not possible!") % self.mount_dir, type=MessageBox.TYPE_ERROR, timeout=10)
                 self.selectionChanged()
+
 	def GetFolderSize(self, path):
 		TotalSize = 0
 		for item in os_walk(path):
