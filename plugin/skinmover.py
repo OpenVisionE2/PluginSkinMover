@@ -129,8 +129,8 @@ class SkinMoverScreen(Screen):
 		         targetlocation="/media/usb"
 		self.mount_dir = targetlocation
 		self.ext_dir = targetlocation+"/enigma2"
-		self.enabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
-		self.disabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
+		self.enabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
+		self.disabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
 		
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
@@ -291,11 +291,11 @@ class SkinMoverScreen(Screen):
 						except:
 						         pass
 			if error:
-				self.session.open(MessageBox, _("Skin movement was not successful, please check devices!"), type = MessageBox.TYPE_ERROR, timeout = 10)
+				self.session.open(MessageBox, _("Skin movement was not successful, please check devices!"), type=MessageBox.TYPE_ERROR, timeout=10)
 				error = False
 			self.createMenuList()
 		else:
-			self.session.open(MessageBox, _("No device to %s mounted. Skin movement is not possible!") % self.mount_dir, type = MessageBox.TYPE_ERROR, timeout = 10)
+			self.session.open(MessageBox, _("No device to %s mounted. Skin movement is not possible!") % self.mount_dir, type=MessageBox.TYPE_ERROR, timeout=10)
                 self.selectionChanged()
 	def GetFolderSize(self, path):
 		TotalSize = 0

@@ -49,7 +49,7 @@ class storagedevicescreen(Screen, HelpableScreen):
 	<widget source="key_green" render="Label" position="525,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
         </screen>'''
 
-    def __init__(self, session, text = "", filename = "", currDir = None, location = None, userMode = False, windowTitle = _("Choose backup location"), minFree = None, autoAdd = False, editDir = False, inhibitDirs = [], inhibitMounts = []):
+    def __init__(self, session, text="", filename="", currDir=None, location=None, userMode=False, windowTitle=_("Choose backup location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=[], inhibitMounts=[]):
         Screen.__init__(self, session)
 	self.skin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover")
         HelpableScreen.__init__(self)
@@ -68,7 +68,7 @@ class storagedevicescreen(Screen, HelpableScreen):
         self.inhibitMounts = inhibitMounts
         inhibitDirs = ["/bin", "/boot", "/dev", "/lib", "/proc", "/sbin", "/sys", "/mnt", "/var", "/home", "/tmp", "/srv", "/etc", "/share", "/usr", "/ba", "/MB_Images"]
         inhibitMounts = ["/mnt", "/ba", "/MB_Images"]
-        self["filelist"] = FileList(currDir, showDirectories = True, showFiles = False, inhibitMounts = inhibitMounts, inhibitDirs = inhibitDirs)
+        self["filelist"] = FileList(currDir, showDirectories=True, showFiles=False, inhibitMounts=inhibitMounts, inhibitDirs=inhibitDirs)
         self["mountlist"]= MenuList(mountedDevs)
 	self["key_red"] = StaticText(_("Cancel"))
 	self["key_green"] = StaticText(_("Save"))
@@ -78,7 +78,7 @@ class storagedevicescreen(Screen, HelpableScreen):
         if self.userMode:
             self.usermodeOn()
         class BackupLocationActionMap(HelpableActionMap):
-            def __init__(self, parent, context, actions = { }, prio=0):
+            def __init__(self, parent, context, actions={ }, prio=0):
                 HelpableActionMap.__init__(self, parent, context, actions, prio)
 
         self["WizardActions"] = BackupLocationActionMap(self, "WizardActions",
@@ -216,6 +216,6 @@ class storagedevicescreen(Screen, HelpableScreen):
                         return self.saveSelection(True)
                 except OSError:
                     pass
-                self.session.openWithCallback(self.saveSelection, MessageBox, _("There might not be enough Space on the selected Partition.\nDo you really want to continue?"), type = MessageBox.TYPE_YESNO )
+                self.session.openWithCallback(self.saveSelection, MessageBox, _("There might not be enough Space on the selected Partition.\nDo you really want to continue?"), type=MessageBox.TYPE_YESNO )
             else:
                 self.saveSelection(True)

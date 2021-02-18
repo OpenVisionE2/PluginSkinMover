@@ -47,7 +47,7 @@ pdate = "201406013"
 
 # PluginSkinMover
 config.PluginSkinMover = ConfigSubsection()
-config.PluginSkinMover.targetdevice=ConfigText(default="/media/usb", fixed_size = False)
+config.PluginSkinMover.targetdevice=ConfigText(default="/media/usb", fixed_size=False)
 def foldersize(size):
          try:
             fspace=round(float((size) / (1024.0*1024.0)), 2)        
@@ -70,7 +70,7 @@ def freespace(folder='/'):
             return "location is unavaiable or not mounted"
 
 def Plugins(**kwargs):
-	return [PluginDescriptor(name=_("PluginSkinMover"), description=_("Move your Plugins and skins"), where = PluginDescriptor.WHERE_PLUGINMENU, icon="plugin.png", fnc=main),
+	return [PluginDescriptor(name=_("PluginSkinMover"), description=_("Move your Plugins and skins"), where=PluginDescriptor.WHERE_PLUGINMENU, icon="plugin.png", fnc=main),
 		PluginDescriptor(name="PluginSkinMover", description=_("Move your Plugins and skins"), where=PluginDescriptor.WHERE_EXTENSIONSMENU, fnc=main)]
 
 def main(session, **kwargs):
@@ -140,8 +140,8 @@ class PluginSkinMoverScreen(Screen):
 		         targetlocation="/media/usb"
 		self.mount_dir = targetlocation
 		self.ext_dir = targetlocation+"/Extensions"
-		self.enabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
-		self.disabled_pic = LoadPixmap(cached=True, path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
+		self.enabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
+		self.disabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
 		
@@ -299,11 +299,11 @@ class PluginSkinMoverScreen(Screen):
 						except:
 						         pass
 			if error:
-				self.session.open(MessageBox, _("Plugin movement was not successful, please check devices!"), type = MessageBox.TYPE_ERROR, timeout = 10)
+				self.session.open(MessageBox, _("Plugin movement was not successful, please check devices!"), type=MessageBox.TYPE_ERROR, timeout=10)
 				error = False
 			self.createMenuList()
 		else:
-			self.session.open(MessageBox, _("No device to %s mounted. Plugin movement is not possible!") % self.mount_dir, type = MessageBox.TYPE_ERROR, timeout = 10)
+			self.session.open(MessageBox, _("No device to %s mounted. Plugin movement is not possible!") % self.mount_dir, type=MessageBox.TYPE_ERROR, timeout=10)
                 self.selectionChanged()
 	def GetFolderSize(self, path):
 		TotalSize = 0
