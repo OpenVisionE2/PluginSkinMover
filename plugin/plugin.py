@@ -164,7 +164,7 @@ class PluginSkinMoverScreen(Screen):
                      from settings import storagedevicescreen
                      self.session.openWithCallback(self.selectionChanged, storagedevicescreen)	    
         
-        def selectionChanged(self,result=None):
+        def selectionChanged(self, result=None):
                 if result == True:
                    self.createMenuList()
 		try:
