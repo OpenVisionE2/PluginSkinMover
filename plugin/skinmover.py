@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 from __future__ import print_function
 #######################################################################
-# maintainer: <schomi@vuplus-support.org> 
+# maintainer: <schomi@vuplus-support.org>
 # This plugin is free software, you are allowed to
 # modify it (if you keep the license),
 # but you are not allowed to distribute/publish
@@ -51,7 +51,7 @@ pdate = "201406013"
 
 def foldersize(size):
          try:
-            fspace = round(float((size) / (1024.0 * 1024.0)), 2)        
+            fspace = round(float((size) / (1024.0 * 1024.0)), 2)
 	    #tspace=round(float((capacity) / (1024.0 * 1024.0)),1)
             spacestr = str(fspace) + 'MB'
             return spacestr
@@ -60,11 +60,11 @@ def foldersize(size):
 
 
 def freespace(folder='/'):
-         try:  
+         try:
             diskSpace = os.statvfs(folder)
             capacity = float(diskSpace.f_bsize * diskSpace.f_blocks)
             available = float(diskSpace.f_bsize * diskSpace.f_bavail)
-            fspace = round(float((available) / (1024.0 * 1024.0)), 2)        
+            fspace = round(float((available) / (1024.0 * 1024.0)), 2)
 	    tspace = round(float((capacity) / (1024.0 * 1024.0)), 1)
             spacestr = 'Free space(' + str(fspace) + 'MB) Total space(' + str(tspace) + 'MB)'
             return spacestr
@@ -99,7 +99,7 @@ class SkinMoverScreen(Screen):
 		<widget source="key_yellow" render="Label" position="530,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
 		<widget source="key_blue" render="Label" position="815,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
             </screen>"""
-	
+
 	def __init__(self, session):
 		Screen.__init__(self, session)
 		self.skin_path = resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover")
@@ -109,7 +109,7 @@ class SkinMoverScreen(Screen):
 			self["title"] = StaticText(self.title)
 		except:
 			print('self["title"] was not found in skin')
-		self["info"] = Label("Please wait..")				
+		self["info"] = Label("Please wait..")
 		self["Picture"] = Pixmap()
 		self["key_red"] = StaticText(_("Exit"))
 		self["key_green"] = StaticText(_("in Flash"))
@@ -126,7 +126,7 @@ class SkinMoverScreen(Screen):
 			"blue": self.pluginskinmover,
 			"yellow": self.showsettings,
 		}, -2)
-		
+
 		self.plugin_base_dir = "/usr/share/enigma2"
 		try:
 		         targetlocation = config.PluginSkinMover.targetdevice.value
@@ -136,10 +136,10 @@ class SkinMoverScreen(Screen):
 		self.ext_dir = targetlocation + "/enigma2"
 		self.enabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_flash.png"))
 		self.disabled_pic = LoadPixmap(cached=True, path=resolveFilename(SCOPE_PLUGINS, "Extensions/PluginSkinMover/pic/loc_media.png"))
-		
+
 		if not self.selectionChanged in self["menu"].onSelectionChanged:
 			self["menu"].onSelectionChanged.append(self.selectionChanged)
-		
+
 		#self.onLayoutFinish.append(self.createMenuList)
 		self.timer = eTimer()
                 self.timer.callback.append(self.createMenuList)
@@ -154,11 +154,11 @@ class SkinMoverScreen(Screen):
         def pluginskinmover(self):
             from plugin import PluginSkinMoverScreen
             self.session.open(PluginSkinMoverScreen)
-        
+
         def showsettings(self):
                      from settings import storagedevicescreen
-                     self.session.openWithCallback(self.selectionChanged, storagedevicescreen)	    
-        
+                     self.session.openWithCallback(self.selectionChanged, storagedevicescreen)
+
         def selectionChanged(self, result=None):
                 if result == True:
                    self.createMenuList()
@@ -173,8 +173,8 @@ class SkinMoverScreen(Screen):
 		  elif sel[1] == self.disabled_pic:
 			self["key_green"].setText(_("Exported"))
 		except:
-                  pass	
-		self.getdevices_sizes()	
+                  pass
+		self.getdevices_sizes()
 		# Flash size
 
         def getdevices_sizes(self):
@@ -259,7 +259,7 @@ class SkinMoverScreen(Screen):
 			self["info"].setText(_("Moving, please wait ..."))
 			sel = self["menu"].getCurrent()
 			self.ext_dir = self.mount_dir + "/enigma2"
-			inflash = self.plugin_base_dir + "/" + sel[0] 
+			inflash = self.plugin_base_dir + "/" + sel[0]
 			notinflash = self.ext_dir + "/" + sel[0]
 			print("[PluginSkinMover] " + inflash)
 			print("[PluginSkinMover] " + notinflash)

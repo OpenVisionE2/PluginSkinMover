@@ -147,7 +147,7 @@ class storagedevicescreen(Screen, HelpableScreen):
             self["target"].setText(''.join((currFolder, self.filename)))
         else:
             self["target"].setText(_("Invalid Location"))
- 
+
     def cancel(self):
         self.close(False)
 
@@ -165,25 +165,25 @@ class storagedevicescreen(Screen, HelpableScreen):
             self.close(True)
         else:
             self.close(False)
-            
+
     def checkmountBackupPath(self, path):
            	if path is None:
               		self.session.open(MessageBox, _("nothing entered"), MessageBox.TYPE_ERROR)
-                        return False                 
+                        return False
            	else:
 			sp = []
 			sp = path.split("/")
 			print(sp)
 			if len(sp) > 1:
 				if sp[1] != "media":
- 	             			self.session.open(MessageBox, mounted_string + path, MessageBox.TYPE_ERROR)                 
+ 	             			self.session.open(MessageBox, mounted_string + path, MessageBox.TYPE_ERROR)
 					return False
 			mounted = False
 			self.swappable = False
 			sp2 = []
                 	f = open("/proc/mounts", "r")
-       		 	m = f.readline()                                                    
-        		while (m) and not mounted:                                             
+       		 	m = f.readline()
+        		while (m) and not mounted:
 				if m.find("/%s/%s" % (sp[1], sp[2])) is not -1:
 					mounted = True
 					print(m)
@@ -192,8 +192,8 @@ class storagedevicescreen(Screen, HelpableScreen):
 					if sp2[2].startswith("ext") or sp2[2].endswith("fat"):
 						print("[stFlash] swappable")
 						self.swappable = True
-           			m = f.readline()                                                 
-			f.close()	
+           			m = f.readline()
+			f.close()
 			if not mounted:
  	             		self.session.open(MessageBox, mounted_string + str(path), MessageBox.TYPE_ERROR)
                                 return False
@@ -201,8 +201,8 @@ class storagedevicescreen(Screen, HelpableScreen):
 		             try:
 		 		os.chmod(config.PluginSkinMover.targetdevice.value, 0777)
                              except:
-                                pass 
-                        return True   
+                                pass
+                        return True
 
     def select(self):
         currentFolder = self.getPreferredFolder()
@@ -210,7 +210,7 @@ class storagedevicescreen(Screen, HelpableScreen):
         if foldermounted == True:
            pass
         else:
-           return   
+           return
         if currentFolder is not None:
             if self.minFree is not None:
                 try:
