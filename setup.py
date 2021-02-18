@@ -4,7 +4,7 @@ from distutils.core import setup
 import setup_translate
 
 pkg = 'Extensions.PluginSkinMover'
-setup (name='enigma2-plugin-extensions-pluginskinmover',
+setup(name='enigma2-plugin-extensions-pluginskinmover',
        version='0.6',
        description='Move plugins and skins between flash memory and pen drive',
        packages=[pkg],

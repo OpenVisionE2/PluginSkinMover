@@ -78,7 +78,7 @@ class storagedevicescreen(Screen, HelpableScreen):
         if self.userMode:
             self.usermodeOn()
         class BackupLocationActionMap(HelpableActionMap):
-            def __init__(self, parent, context, actions={ }, prio=0):
+            def __init__(self, parent, context, actions={}, prio=0):
                 HelpableActionMap.__init__(self, parent, context, actions, prio)
 
         self["WizardActions"] = BackupLocationActionMap(self, "WizardActions",
@@ -216,6 +216,6 @@ class storagedevicescreen(Screen, HelpableScreen):
                         return self.saveSelection(True)
                 except OSError:
                     pass
-                self.session.openWithCallback(self.saveSelection, MessageBox, _("There might not be enough Space on the selected Partition.\nDo you really want to continue?"), type=MessageBox.TYPE_YESNO )
+                self.session.openWithCallback(self.saveSelection, MessageBox, _("There might not be enough Space on the selected Partition.\nDo you really want to continue?"), type=MessageBox.TYPE_YESNO)
             else:
                 self.saveSelection(True)

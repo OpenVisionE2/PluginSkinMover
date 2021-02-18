@@ -222,7 +222,7 @@ class SkinMoverScreen(Screen):
 					else:
 						pic = self.enabled_pic
 					f_list.append((f, pic, size))
-		menu_list = [ ]
+		menu_list = []
 		for entry in f_list:
 		        print("166", entry)
 			menu_list.append((entry[0], entry[1], str(entry[2])))
