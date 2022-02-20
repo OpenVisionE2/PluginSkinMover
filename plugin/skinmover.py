@@ -39,7 +39,7 @@ from os.path import join, getsize
 import os
 import shutil
 
-from __init__ import _
+from .__init__ import _
 
 pname = _("PluginSkinMover")
 pdesc = _("Move plugins and skins between flash memory and pen drive")
@@ -152,11 +152,11 @@ class SkinMoverScreen(Screen):
                 self.timer.start(50, 1)
 
         def pluginskinmover(self):
-            from plugin import PluginSkinMoverScreen
+            from .plugin import PluginSkinMoverScreen
             self.session.open(PluginSkinMoverScreen)
 
         def showsettings(self):
-                     from settings import storagedevicescreen
+                     from .settings import storagedevicescreen
                      self.session.openWithCallback(self.selectionChanged, storagedevicescreen)
 
         def selectionChanged(self, result=None):
