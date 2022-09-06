@@ -39,13 +39,13 @@ class storagedevicescreen(Screen, HelpableScreen):
         <widget source="Title" render="Label" position="80,80" size="750,30" zPosition="3" font="Regular;26" transparent="1"/>
         <widget source="session.VideoPicture" render="Pig"  position="80,120" size="380,215" zPosition="3" backgroundColor="#ff000000"/>
         <widget source="text" render="Label" position="80,470" size="260,25" font="Regular;22" transparent="1" zPosition="1" foregroundColor="#ffffff" />
-        <widget source="oktext" render="Label" position="540,596" size="660,25" font="Regular;22" transparent="1" zPosition="1" halign="left" valign="center" />
-        <widget name="target" position="80,500" size="540,22" valign="left" font="Regular;22" transparent="1" />
-        <widget name="filelist" position="550,120" size="610,503" zPosition="1" scrollbarMode="showOnDemand" selectionDisabled="1" transparent="1" />
-        <ePixmap position="210,635" size="25,25" zPosition="0" pixmap="~/pic/button_red.png" transparent="1" alphatest="on"/>
-        <ePixmap position="495,635" size="260,25" zPosition="0" pixmap="~/pic/button_green.png" transparent="1" alphatest="on"/>
-        <widget source="key_red" render="Label" position="240,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-        <widget source="key_green" render="Label" position="525,635" size="260,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
+        <widget source="oktext" render="Label" position="540,596" size="660,25" font="Regular;22" transparent="1" zPosition="1" horizontalAlignment="left" verticalAlignment="center" />
+        <widget name="target" position="80,500" size="540,22" verticalAlignment="left" font="Regular;22" transparent="1" />
+        <widget name="filelist" position="550,120" size="610,503" zPosition="1" scrollbarMode="showOnDemand" selection="1" transparent="1" />
+        <ePixmap position="210,635" size="25,25" zPosition="0" pixmap="~/pic/button_red.png" transparent="1" alphaTest="on"/>
+        <ePixmap position="495,635" size="260,25" zPosition="0" pixmap="~/pic/button_green.png" transparent="1" alphaTest="on"/>
+        <widget source="key_red" render="Label" position="240,635" size="260,25" zPosition="1" font="Regular;20" horizontalAlignment="left" transparent="1" />
+        <widget source="key_green" render="Label" position="525,635" size="260,25" zPosition="1" font="Regular;20" horizontalAlignment="left" transparent="1" />
         </screen>'''
 
     def __init__(self, session, text="", filename="", currDir=None, location=None, userMode=False, windowTitle=_("Choose backup location"), minFree=None, autoAdd=False, editDir=False, inhibitDirs=[], inhibitMounts=[]):

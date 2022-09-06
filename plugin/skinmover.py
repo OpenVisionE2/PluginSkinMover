@@ -87,15 +87,15 @@ class SkinMoverScreen(Screen):
                     }
                 </convert>
             </widget>
-            <widget name="Picture" position="680,155" size="280,210" alphatest="on" />
-            <ePixmap position="10,455" size="25,25" zPosition="0" pixmap="~/pic/button_red.png" transparent="1" alphatest="on"/>
-            <ePixmap position="215,455" size="185,25" zPosition="0" pixmap="~/pic/button_green.png" transparent="1" alphatest="on"/>
-            <ePixmap position="500,455" size="185,25" zPosition="0" pixmap="~/pic/button_yellow.png" transparent="1" alphatest="on"/>
-            <ePixmap position="785,455" size="185,25" zPosition="0" pixmap="~/pic/button_blue.png" transparent="1" alphatest="on"/>
-            <widget source="key_red" render="Label" position="40,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-            <widget source="key_green" render="Label" position="245,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-            <widget source="key_yellow" render="Label" position="530,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
-            <widget source="key_blue" render="Label" position="815,455" size="185,25" zPosition="1" font="Regular;20" halign="left" transparent="1" />
+            <widget name="Picture" position="680,155" size="280,210" alphaTest="on" />
+            <ePixmap position="10,455" size="25,25" zPosition="0" pixmap="~/pic/button_red.png" transparent="1" alphaTest="on"/>
+            <ePixmap position="215,455" size="185,25" zPosition="0" pixmap="~/pic/button_green.png" transparent="1" alphaTest="on"/>
+            <ePixmap position="500,455" size="185,25" zPosition="0" pixmap="~/pic/button_yellow.png" transparent="1" alphaTest="on"/>
+            <ePixmap position="785,455" size="185,25" zPosition="0" pixmap="~/pic/button_blue.png" transparent="1" alphaTest="on"/>
+            <widget source="key_red" render="Label" position="40,455" size="185,25" zPosition="1" font="Regular;20" horizontalAlignment="left" transparent="1" />
+            <widget source="key_green" render="Label" position="245,455" size="185,25" zPosition="1" font="Regular;20" horizontalAlignment="left" transparent="1" />
+            <widget source="key_yellow" render="Label" position="530,455" size="185,25" zPosition="1" font="Regular;20" horizontalAlignment="left" transparent="1" />
+            <widget source="key_blue" render="Label" position="815,455" size="185,25" zPosition="1" font="Regular;20" horizontalAlignment="left" transparent="1" />
         </screen>"""
 
     def __init__(self, session):
