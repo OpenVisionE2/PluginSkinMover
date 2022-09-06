@@ -278,7 +278,7 @@ class SkinMoverScreen(Screen):
                         shutil.rmtree(inflash)
                         symlink(notinflash, inflash)
                     except:
-                          pass
+                        pass
             elif sel[1] == self.disabled_pic:
                 if path.islink(inflash):
                     remove(inflash)

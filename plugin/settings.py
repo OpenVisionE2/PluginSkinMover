@@ -25,7 +25,7 @@ import os
 
 mountedDevs = []
 for p in harddiskmanager.getMountedPartitions(True):
-        mountedDevs.append((p.mountpoint, (_(p.description) if p.description else "")))
+    mountedDevs.append((p.mountpoint, (_(p.description) if p.description else "")))
 
 ###########################################################################
 
